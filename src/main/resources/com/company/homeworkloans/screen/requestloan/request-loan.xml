@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://jmix.io/schema/ui/window"
+        caption="msg://requestLoan.caption">
+    <data>
+
+        <collection id="clientsDc" class="com.company.homeworkloans.entity.Client">
+            <fetchPlan extends="_base"/>
+            <loader id="clientsDl">
+                <query>
+                    <![CDATA[select e from Client e]]>
+                </query>
+            </loader>
+        </collection>
+
+        <instance id="loanDc" class="com.company.homeworkloans.entity.Loan">
+            <fetchPlan extends="_base">
+                <property name="client" fetchPlan="_base"/>
+            </fetchPlan>
+            <loader id="loanDl"/>
+        </instance>
+
+    </data>
+
+    <actions>
+        <action id="request" caption="msg://Request" icon="COMMENTING_O"/>
+        <action id="cancel" caption="msg://Close" icon="CLOSE"/>
+    </actions>
+
+    <facets>
+        <dataLoadCoordinator auto="true"/>
+    </facets>
+    <dialogMode
+            width="AUTO" height="AUTO"/>
+    <layout spacing="true">
+
+        <entityComboBox id="clientBox"
+                        caption="msg://Client"
+                        optionsContainer="clientsDc"
+                        dataContainer="loanDc"
+                        property="client"
+                        width="400"
+                        required="true"
+                        textInputAllowed="false"
+                        />
+
+        <textField id="amountField"
+                   caption="msg://Amount"
+                   width="400"
+                   required="true"
+                   dataContainer="loanDc"
+                   property="amount"/>
+
+        <buttonsPanel>
+            <button id="request" action="request" width="120"/>
+            <button id="cancel" action="cancel" width="120"/>
+        </buttonsPanel>
+
+
+    </layout>
+</window>

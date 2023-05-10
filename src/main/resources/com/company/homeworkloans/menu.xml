@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<menu-config xmlns="http://jmix.io/schema/ui/menu">
+
+    <menu id="application" caption="msg://com.company.homeworkloans/menu.application" insertBefore="administration">
+        <item screen="Client.browse" caption="msg://com.company.homeworkloans.screen.client/clientBrowse.menu"/>
+        <item screen="Loan.browse" caption="msg://com.company.homeworkloans.screen.loan/loanBrowse.menu"/>
+        <item screen="User.browse" caption="msg://com.company.homeworkloans.screen.user/UserBrowse.caption"/>
+        <item screen="themeSettingsScreen" caption="msg://io.jmix.ui.app.themesettings/themeSettings.caption"/>
+        <item screen="Loan.approval" caption="msg://com.company.homeworkloans.screen.loan/loanApproval.menu"/>
+    </menu>
+
+</menu-config>

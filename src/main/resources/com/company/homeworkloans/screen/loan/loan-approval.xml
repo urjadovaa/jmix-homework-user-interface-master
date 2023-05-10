@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://jmix.io/schema/ui/window"
+        caption="msg://loanApproval.caption"
+        focusComponent="loansTable">
+    <data readOnly="true">
+
+        <collection id="loansDc"
+                    class="com.company.homeworkloans.entity.Loan">
+            <fetchPlan extends="_base">
+                <property name="client" fetchPlan="_base"/>
+            </fetchPlan>
+            <loader id="loansDl">
+                <query>
+                    <![CDATA[select e from Loan e where e.status = :loanStatus]]>
+                </query>
+            </loader>
+        </collection>
+
+        <collection id="previousLoansDc" class="com.company.homeworkloans.entity.Loan">
+            <fetchPlan extends="_base"/>
+            <loader id="previousLoansDl">
+                <query>
+                    <![CDATA[select e from Loan e where e.client = :client order by e.requestDate DESC]]>
+                </query>
+            </loader>
+        </collection>
+
+    </data>
+    <facets>
+        <screenSettings id="settingsFacet" auto="true"/>
+    </facets>
+    <actions>
+        <action id="lookupSelectAction"
+                caption="msg:///actions.Select"
+                icon="LOOKUP_OK"
+                primary="true"
+                shortcut="${COMMIT_SHORTCUT}"/>
+        <action id="lookupCancelAction"
+                caption="msg:///actions.Cancel"
+                icon="LOOKUP_CANCEL"/>
+    </actions>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="loansTable" spacing="true">
+        <filter id="filter"
+                dataLoader="loansDl">
+            <properties include=".*"/>
+        </filter>
+        <groupTable id="loansTable"
+                    width="100%"
+                    height="100%"
+                    dataContainer="loansDc">
+            <actions>
+                <action id="approve" caption="msg://approve" icon="HANDSHAKE_O" type="itemTracking"/>
+                <action id="reject" caption="msg://reject" icon="HAND_STOP_O" type="itemTracking"/>
+            </actions>
+            <columns>
+                <group>
+                    <column id="requestDate"/>
+                </group>
+                <column id="client"/>
+                <column id="amount"/>
+                <column id="client.phoneNumber"/>
+                <column id="client.salary"/>
+                <column id="age" caption="msg://clientAge"/>
+            </columns>
+            <simplePagination/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="loansTableApproveBtn" action="loansTable.approve" width="100"/>
+                <button id="loansTableRejectBtn" action="loansTable.reject" width="100"/>
+            </buttonsPanel>
+        </groupTable>
+        <label value="msg://previousLoansLabel.value"/>
+        <table id="previousLoansTable" height="185px" width="100%" dataContainer="previousLoansDc">
+            <columns>
+                <column id="amount"/>
+                <column id="requestDate"/>
+                <column id="status"/>
+            </columns>
+        </table>
+        <hbox id="lookupActions" spacing="true" visible="false">
+            <button action="lookupSelectAction"/>
+            <button action="lookupCancelAction"/>
+        </hbox>
+    </layout>
+</window>

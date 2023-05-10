@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.11.xsd"
+        objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS">
+    <changeSet id="1" author="jmix">
+        <insert tableName="CLIENT">
+            <column name="ID">16005916-dc62-45a1-aca9-ed4df169548a</column>
+            <column name="FIRST_NAME">Deanna</column>
+            <column name="LAST_NAME">Arnold</column>
+            <column name="BIRTH_DATE">1980-11-15</column>
+            <column name="PHONE_NUMBER">133 378 372</column>
+            <column name="SALARY">50500</column>
+        </insert>
+        <insert tableName="CLIENT">
+            <column name="ID">9a522f00-761a-4961-8ff1-1b81fa410183</column>
+            <column name="FIRST_NAME">Peter</column>
+            <column name="LAST_NAME">Reeves</column>
+            <column name="BIRTH_DATE">1993-01-03</column>
+            <column name="PHONE_NUMBER">089 308 374</column>
+            <column name="SALARY">83000</column>
+        </insert>
+        <insert tableName="CLIENT">
+            <column name="ID">218afd54-ec80-4ece-a75d-c836e348ced2</column>
+            <column name="FIRST_NAME">Angela</column>
+            <column name="LAST_NAME">Clark</column>
+            <column name="BIRTH_DATE">1969-12-17</column>
+            <column name="PHONE_NUMBER">387 394 363</column>
+            <column name="SALARY">115300</column>
+        </insert>
+        <insert tableName="CLIENT">
+            <column name="ID">4a857be1-55d1-488b-8072-6a96ffd90f86</column>
+            <column name="FIRST_NAME">Lisa</column>
+            <column name="LAST_NAME">Fox</column>
+            <column name="BIRTH_DATE">1989-06-20</column>
+            <column name="PHONE_NUMBER">373 365 691</column>
+            <column name="SALARY">47000</column>
+        </insert>
+        <insert tableName="CLIENT">
+            <column name="ID">a2948725-f567-4dfd-9af9-7f64adcf3486</column>
+            <column name="FIRST_NAME">Robin</column>
+            <column name="LAST_NAME">Howell</column>
+            <column name="BIRTH_DATE">1979-08-22</column>
+            <column name="PHONE_NUMBER">308 098 113</column>
+            <column name="SALARY">43800</column>
+        </insert>
+    </changeSet>
+    <changeSet id="2" author="jmix">
+        <insert tableName="LOAN">
+            <column name="ID">7b82e01f-ec29-42c4-843b-e586d8eab030</column>
+            <column name="CLIENT_ID">16005916-dc62-45a1-aca9-ed4df169548a</column>
+            <column name="AMOUNT">300000</column>
+            <column name="REQUEST_DATE">2021-06-05</column>
+            <column name="STATUS">A</column>
+        </insert>
+        <insert tableName="LOAN">
+            <column name="ID">df4ed700-3b55-4368-8bc2-f2dabc13acd6</column>
+            <column name="CLIENT_ID">9a522f00-761a-4961-8ff1-1b81fa410183</column>
+            <column name="AMOUNT">200000</column>
+            <column name="REQUEST_DATE">2020-11-30</column>
+            <column name="STATUS">J</column>
+        </insert>
+    </changeSet>
+</databaseChangeLog>
