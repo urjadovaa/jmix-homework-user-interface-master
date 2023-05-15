@@ -33,22 +33,25 @@
             width="AUTO" height="AUTO"/>
     <layout spacing="true">
 
-        <entityComboBox id="clientBox"
-                        caption="msg://Client"
-                        optionsContainer="clientsDc"
-                        dataContainer="loanDc"
-                        property="client"
-                        width="400"
-                        required="true"
-                        textInputAllowed="false"
-                        />
-
-        <textField id="amountField"
-                   caption="msg://Amount"
-                   width="400"
-                   required="true"
-                   dataContainer="loanDc"
-                   property="amount"/>
+        <form id="form">
+            <column>
+                <entityComboBox id="clientBox"
+                                        caption="msg://Client"
+                                        optionsContainer="clientsDc"
+                                        dataContainer="loanDc"
+                                        property="client"
+                                        width="400"
+                                        required="true"
+                                        textInputAllowed="false"
+                                />
+                <textField id="amountField"
+                                   caption="msg://Amount"
+                                   width="400"
+                                   required="true"
+                                   dataContainer="loanDc"
+                                   property="amount"/>
+            </column>
+        </form>
 
         <buttonsPanel>
             <button id="request" action="request" width="120"/>

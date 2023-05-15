@@ -4,6 +4,7 @@ import io.jmix.core.entity.annotation.JmixGeneratedValue;
 import io.jmix.core.metamodel.annotation.JmixEntity;
 
 import javax.persistence.*;
+import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 import java.math.BigDecimal;
@@ -26,7 +27,8 @@ public class Loan {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     private Client client;
 
-    @Positive
+    @Digits(message = "{msg://com.company.homeworkloans.entity/Loan.amount.validation.Digits}", integer = 19, fraction = 2)
+    @Positive(message = "{msg://com.company.homeworkloans.entity/Loan.amount.validation.Positive}")
     @Column(name = "AMOUNT", nullable = false, precision = 19, scale = 2)
     @NotNull
     private BigDecimal amount;

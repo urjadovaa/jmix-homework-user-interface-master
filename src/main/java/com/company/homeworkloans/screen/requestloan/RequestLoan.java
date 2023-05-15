@@ -7,14 +7,14 @@ import io.jmix.core.DataManager;
 import io.jmix.core.TimeSource;
 import io.jmix.ui.Notifications;
 import io.jmix.ui.action.Action;
-import io.jmix.ui.component.EntityComboBox;
-import io.jmix.ui.component.TextField;
+import io.jmix.ui.component.*;
 import io.jmix.ui.model.InstanceContainer;
 import io.jmix.ui.screen.*;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.Collection;
 
 @UiController("RequestLoan")
 @UiDescriptor("request-loan.xml")
@@ -37,6 +37,10 @@ public class RequestLoan extends Screen {
     private TextField<BigDecimal> amountField;
     @Autowired
     private TimeSource timeSource;
+    @Autowired
+    private ScreenValidation screenValidation;
+    @Autowired
+    private Form form;
 
     // вызов диалога с заполнением поля Client - конструктор
     public RequestLoan withClient(Client client) {
@@ -48,14 +52,11 @@ public class RequestLoan extends Screen {
     // действие "Направить запрос"
     @Subscribe("request")
     public void onRequest(Action.ActionPerformedEvent event) {
-        // проверка заполненности обязательных полей
-        if(clientBox.getValue() == null ||
-                amountField.getValue() == null ||
-                amountField.getValue().compareTo(BigDecimal.ZERO) <= 0) {
-            notifications.create(Notifications.NotificationType.WARNING)
-                    .withCaption(messageBundle.getMessage("enterRequiredFieldsHeader"))
-                    .withDescription(messageBundle.getMessage("enterRequiredFields"))
-                    .show();
+
+        // валидация данных
+        ValidationErrors validationErrors = screenValidation.validateUiComponents(form);
+        if (!validationErrors.isEmpty()) {
+            screenValidation.showValidationErrors(this, validationErrors);
         } else {
             // сохранение запроса займа
             Loan loan = loanDc.getItem();
@@ -64,6 +65,7 @@ public class RequestLoan extends Screen {
             dataManager.save(loan);
             this.close(StandardOutcome.CLOSE);
         }
+        
     }
 
     // действие "Закрыть экран"
