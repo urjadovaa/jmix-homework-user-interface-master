@@ -18,7 +18,7 @@ import java.util.Collection;
 
 @UiController("RequestLoan")
 @UiDescriptor("request-loan.xml")
-@DialogMode(forceDialog = true)
+@DialogMode(forceDialog = true, width = "AUTO", height = "AUTO")
 public class RequestLoan extends Screen {
 
     @Autowired
@@ -63,7 +63,7 @@ public class RequestLoan extends Screen {
             loan.setRequestDate(LocalDate.now());
             loan.setStatus(LoanStatus.REQUESTED);
             dataManager.save(loan);
-            this.close(StandardOutcome.CLOSE);
+            this.close(StandardOutcome.COMMIT);
         }
         
     }

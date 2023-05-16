@@ -67,8 +67,8 @@
             <simplePagination/>
             <buttonsPanel id="buttonsPanel"
                           alwaysVisible="true">
-                <button id="loansTableApproveBtn" action="loansTable.approve" width="100"/>
-                <button id="loansTableRejectBtn" action="loansTable.reject" width="100"/>
+                <button id="loansTableApproveBtn" action="loansTable.approve"/>
+                <button id="loansTableRejectBtn" action="loansTable.reject"/>
             </buttonsPanel>
         </groupTable>
         <label value="msg://previousLoansLabel.value"/>

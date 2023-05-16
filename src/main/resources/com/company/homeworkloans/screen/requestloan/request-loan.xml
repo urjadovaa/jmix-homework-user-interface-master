@@ -29,8 +29,7 @@
     <facets>
         <dataLoadCoordinator auto="true"/>
     </facets>
-    <dialogMode
-            width="AUTO" height="AUTO"/>
+
     <layout spacing="true">
 
         <form id="form">
